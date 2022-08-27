@@ -35,10 +35,10 @@ import SideNav from '../../components/SideNav'
                 e.preventDefault()
                 const sektor = {
                     sectorname:this.sector,
-                    id:this.user._id,
-                    username:this.user.username,
-                    firstname: this.user.firstname,
-                    lastname:this.user.lastname
+                    id:this.$store.state.user._id,
+                    username:this.$store.state.user.username,
+                    firstname: this.$store.state.user.firstname,
+                    lastname:this.$store.state.user.lastname
                 }
                 const result = await axios.post('https://hotel-menagment-app-vue-app.herokuapp.com/dodajsector',sektor )
                
