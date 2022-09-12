@@ -4,10 +4,10 @@
                 <div class="card card-1">
                    
                     <div v-if="user.gender == 'female' ">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="">
+                        <img src="../../zenskiavatar.jpg" alt="">
                     </div>
                     <div v-if="user.gender == 'male' ">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="">
+                        <img src="../../muskiavatar.jpg" alt="">
                     </div>
                     
                     <!-- <div v-else>
@@ -118,7 +118,37 @@ import Chart from '../charts/Chart.vue'
         },
 
     mounted(){
-        this.$store.state.sidenav = true
+       
+        
+        
+        if(!this.user){
+            this.$router.push('/')
+        }
+
+        if(this.user.role != 'sef'){
+            this.$router.push(`${this.user.role}`)
+
+        }else if(this.user.role != 'uposlenik'){
+            this.$router.push(`${this.user.role}`)
+
+        }else if(this.user.role != 'admin'){
+            this.$router.push(`${this.user.role}`)
+
+        }
+
+        window.addEventListener('resize' , () => {
+            let x = window.innerWidth
+
+            if(window.innerWidth > 600){
+        
+                document.querySelector('.side-nav').style = "transform: translate(0%,0%)"
+            }else{
+                document.querySelector('.side-nav').style = "transform: translate(-100%,0%)"
+            }
+        })
+      
+        this.$store.state.sidenav = false;
+
     }
  }
 </script>
@@ -132,6 +162,7 @@ import Chart from '../charts/Chart.vue'
     justify-content: center;
     gap:10px;
     box-sizing: border-box;
+    transform: translate(-4%,0%);
 }
 .profile-left{
     width:30%;
@@ -333,7 +364,9 @@ gap:10px;
     .profile{
     width:95%;
     flex-direction: column;
+    transform: translate(0%,0%);
     padding-bottom:30px;
+    
 }
 .profile-left{
     width:100%;

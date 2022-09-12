@@ -1,6 +1,6 @@
 <template>
-    <div class="sektor-sadrzaj">
-        <SideNav />
+    
+        
         <div class="sadrzaj">
        
         <div class="uposlenici">
@@ -10,13 +10,15 @@
                 <div v-for="uposlenik in sadrzaj" v-bind:key="uposlenik">
                     <div class="card">
                         <div v-if="uposlenik.gender == 'female' " class='image'>
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                            <img src="../../zenskiavatar.jpg"
                                 alt="">
                         </div>
                         <div v-if="uposlenik.gender == 'male' " class="image">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                            <img src="../../muskiavatar.jpg"
                                 alt="">
                         </div>
+
+
                         <h3>{{uposlenik.firstname}} {{uposlenik.lastname}}</h3>
                         <small>{{uposlenik.availabilityStatus}}</small>
                         <form @submit="(e) => {
@@ -35,7 +37,7 @@
             <div class="sobe-items" v-for="sadrzaj in sobeSadrzaj " v-bind:key='sadrzaj'>
                 <div v-for="soba in sadrzaj" v-bind:key="soba">
                     <div class="card-soba">
-                        
+                        <p>{{soba.rednibroj}}</p>
                         <h3>{{soba.opis}}</h3>
                         
                         <form @submit="(e) => {
@@ -52,7 +54,7 @@
 
         </div>
         </div>
-    </div>
+     
 </template>
 
 <script>
@@ -118,7 +120,10 @@
                 this.$router.push(`/${this.$store.state.user.role}`)
                 
             }
-            this.$store.state.sidenav = true;
+     
+            this.$store.state.sidenav = false;
+     
+
             
         }
     }
@@ -126,20 +131,20 @@
 
 <style scoped>
    
-    .sektor-sadrzaj {
-        width: 100%;
-        height: 90vh;
-        display: flex;
-    }
-
-    .sektor-sadrzaj h1 {
+   
+    .uposlenici h1 {
         text-align: center;
         margin-bottom: 5%;
         color: cornflowerblue;
     }
     .sadrzaj{
         width:70%;
+        height:90vh;
         margin:auto;
+        padding-right: 40px;
+    overflow:hidden;
+    overflow-y: auto ;
+        /* transform: translate(-10%,0%); */
     }
     .uposlenici,.sobe{
         padding: 10px;
@@ -217,6 +222,10 @@
         background-color: cornflowerblue;
         border-radius: 5px;
         padding: 15px;
+    }
+    .card-soba p {
+        color:white;
+        text-align: center;
     }
     .card-soba h3{
          color: white;

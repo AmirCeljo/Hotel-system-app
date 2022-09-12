@@ -70,7 +70,7 @@
                 }
 
              
-                const result = await axios.post('https://hotel-menagment-app-vue-app.herokuapp.com/rezervisisobu',obj)
+                const result = await axios.post('http://localhost:5000/rezervisisobu',obj)
 
                 if(result){
                     this.$router.go()
@@ -88,8 +88,9 @@
 .overlay-rezervisi{
     position:fixed;
     top:0;left:0;
-    z-index: 10;
+    z-index: 20;
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width:100%;
@@ -101,9 +102,11 @@ h2{
     text-align:center;
 }
 .times{
-        position: absolute;
-        top:2%;
-        right: 2%;
+       
+        
+        width:30%;
+        text-align: right;
+        margin: 0% auto;
         font-size:30px;
         font-weight:500;
         color:white;

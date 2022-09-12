@@ -4,13 +4,14 @@
                
                 <div class='form' v-for="k in korisnik" v-bind:key="k">
                     
+                        
                     <div class='side' v-if="k.status == 'active' ">
                        <div v-if="k.gender == 'female' " class='image'>
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                            <img src="../../zenskiavatar.jpg"
                                 alt="">
                         </div>
                         <div v-if="k.gender == 'male' " class="image">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                            <img src="../../muskiavatar.jpg"
                                 alt="">
                         </div>
                         <h3>{{k.firstname}} {{k.lastname}}</h3>
@@ -88,12 +89,12 @@
         methods:{
             
              async onSubmitDeaktiviraj(korisnik){
-                const result = await axios.post('https://hotel-menagment-app-vue-app.herokuapp.com/deaktivirajkorisnika',korisnik[0])
+                const result = await axios.post('http://localhost:5000/deaktivirajkorisnika',korisnik[0])
                 
                 this.$router.go()
             },
              async onSubmitAktiviraj(korisnik){
-                const result = await axios.post('https://hotel-menagment-app-vue-app.herokuapp.com/aktivirajkorisnika',korisnik[0])
+                const result = await axios.post('http://localhost:5000/aktivirajkorisnika',korisnik[0])
                 this.$router.go()
             },
             closeWindow(){
@@ -113,7 +114,7 @@
         display: none;
         justify-content: center;
         align-items: center;
-        
+        flex-direction: column;
         width:100%;
         height: 100vh;
         position: fixed;
@@ -188,6 +189,7 @@
     .submit-btn-deaktiviraj{
         background:transparent;
         border: 1px solid red;
+        border-radius: 5px;
         color:red;
         padding: 15px 30px;
         cursor:pointer;
@@ -197,6 +199,8 @@
      .submit-btn-aktiviraj{
         background:transparent;
         border: 1px solid cornflowerblue;
+        border-radius: 5px;
+
         color:cornflowerblue;
         padding: 15px 30px;
         cursor:pointer;
@@ -204,9 +208,9 @@
         
     }
     .times{
-        position: absolute;
-        top:2%;
-        right: 2%;
+       width:40%;
+        text-align: right;
+        margin: 0% auto;
         font-size:30px;
         font-weight:500;
         color:white;

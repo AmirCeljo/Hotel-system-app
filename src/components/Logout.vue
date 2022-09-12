@@ -9,6 +9,7 @@
             logout(){
                 localStorage.removeItem('user')
                 this.$store.state.user = false
+                
                 this.$router.push('/')
               
             }

@@ -1,6 +1,6 @@
 <template>
-    <div class="rezervisi-container">
-        <SideNav />
+
+     
         <div class='rezervisi-content'>
             <div class="form">
                 <form action="" @submit="(e) => {
@@ -30,8 +30,8 @@
                 <div v-else>
                     <div class="sobe" v-for="x in slobodnesobe" v-bind:key="x">
                         <div class="sobe-card" v-for="y in x" v-bind:key="y">
-                            <p>Soba {{y.id}}</p>
                             <p>{{y.sektor}}</p>
+                            <p>Soba {{y.rednibroj}}</p>
 
                             <div>
                                 <small class="green">slobodna za period</small>
@@ -52,32 +52,11 @@
                 </div>
 
             </div>
-             <div class="sobe-background">
-                <div v-if="zauzetesobe.length == 0">
-                    <h1>Zauzete sobe</h1>
-                </div>
-                <div v-else>
-                    <div class="sobe" >
-                        
-                            
-                            <div class="sobe-card" v-for="x in zauzetesobe" v-bind:key="x">
-                                <p>Soba{{x.id}}</p>
-                                <small class="red">zauzeta za period</small>
-                                <small class="red">{{x.checkIn}} </small>
-                                <small class="red">{{x.checkOut}}</small>
-                            </div>
-                            </div>
-                   
-                           
-                      
-                    
-                </div>
-
-            </div>
-           
+        
+           <OverlayRezervisi :soba="this.soba" />
         </div>
-        <OverlayRezervisi :soba="this.soba" />
-    </div>
+        
+ 
 </template>
 
 <script>
@@ -97,7 +76,6 @@ import OverlayRezervisi from "../../components/overlays/OverlayRezervisi.vue"
                 checkIn: '',
                 checkOut: '',
                 slobodnesobe: [],
-                zauzetesobe: [],
                 soba:[]
             }
         },
@@ -134,90 +112,30 @@ import OverlayRezervisi from "../../components/overlays/OverlayRezervisi.vue"
             }
         },
         mounted() {
-            const fetchZauzeteSobe = async () => {
-                const result = await axios.get('https://hotel-menagment-app-vue-app.herokuapp.com/zauzetesobe')
-              
-                if(this.zauzetesobe.length > 0){
-                    this.zauzetesobe.splice(0,this.zauzetesobe.length)
             
-                  result.data.map(item => {
-                    
-                     const lista = item.checkIn.split('T')
-                    const lista2 = item.checkOut.split('T')
-
-                    const listastring1 = lista[0].split("-")
-                    const num1 = listastring1[2]
-                    const pretvoreni1 = parseInt(num1) + 1
-                    const gotovString1 = listastring1[0] + "-" + listastring1[1] + "-" + pretvoreni1
-
-                    const listastring2 = lista2[0].split("-")
-                    const num2 = listastring2[2]
-                    const pretvoreni2 = parseInt(num2) + 1
-                    const gotovString2 = listastring2[0] + "-" + listastring2[1] + "-" + pretvoreni2
-
-                    const obj = {
-                        id: item.sobaId,
-                        checkIn : gotovString1,
-                        checkOut: gotovString2
-                    }
-                    this.zauzetesobe.push(obj)
-                })
-                    }
-                    else{
-                        result.data.map(item => {
-                   
-
-
-                     const lista = item.checkIn.split('T')
-                    const lista2 = item.checkOut.split('T')
-
-                    const listastring1 = lista[0].split("-")
-                    const num1 = listastring1[2]
-                    const pretvoreni1 = parseInt(num1) + 1
-                    const gotovString1 = listastring1[0] + "-" + listastring1[1] + "-" + pretvoreni1
-
-                    const listastring2 = lista2[0].split("-")
-                    const num2 = listastring2[2]
-                    const pretvoreni2 = parseInt(num2) + 1
-                    const gotovString2 = listastring2[0] + "-" + listastring2[1] + "-" + pretvoreni2
-
-                    const obj = {
-                        id: item.sobaId,
-                        checkIn : gotovString1,
-                        checkOut: gotovString2
-                    }
-                    this.zauzetesobe.push(obj)
-                })
-                    }
-
-               
-
-            }
-            
-            fetchZauzeteSobe()
 
             if(this.$store.state.user.role == 'admin'){
                 this.$router.push(`/${this.$store.state.user.role}`)
             }
 
-            this.$store.state.sidenav = true;
+    
+            this.$store.state.sidenav = false;
+    
+
+
         }
     }
 </script>
 
 <style scoped>
     
-    .rezervisi-container{
-        display:flex;
-        width:100%;
-        height:90vh;
-    }
+   
     .rezervisi-content {
 
         width: 70%;
         
         margin: 0% auto;
-
+        
     }
 
     .form {

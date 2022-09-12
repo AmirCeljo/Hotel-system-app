@@ -1,54 +1,136 @@
 <template>
-    <div class="side-nav">
+    <div class="side-nav" v-if="this.$store.state.user">
         <div>
-            
+
             <div v-if="this.$store.state.user.role == 'admin'">
-            <AdminUl />
-        </div>
+                <ul>
+                    <li>
+                        <router-link to="/admin">
+                            <font-awesome-icon icon="fa-solid fa-user" />Profil</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/admin/adduser">
+                            <font-awesome-icon icon="fa-solid fa-user" /> Dodaj novog korisnika</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/admin/svikorisnici">
+                            <font-awesome-icon icon="fa-solid fa-list" /> Upravljanje Korisnicima</router-link>
+                    </li>
+                    <li>
+                        <Logout />
+                    </li>
+                </ul>
+            </div>
 
-       <div v-if="this.$store.state.user.role == 'sef'">
-            <SefUl />
-        </div>
+            <div v-if="this.$store.state.user.role == 'sef'">
+                <ul>
+                    <li>
+                        <router-link to="/sef">
+                            <font-awesome-icon icon="fa-solid fa-user" />Profil</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/sef/svisektori">
+                            <font-awesome-icon icon="fa-solid fa-list" />Svi Sektori</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/uposlenik/rezervisisobu">
+                            <font-awesome-icon icon="fa-solid fa-calendar" />Rezervacija Soba </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/uposlenik/statussoba">
+                            <font-awesome-icon icon="fa-solid fa-calendar-alt" />Status Soba </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/sef/dodajsektor">
+                            <font-awesome-icon icon="fa-solid fa-plus" /> Dodaj Sektor</router-link>
+                    </li>
 
-        <div v-if="this.$store.state.user.role === 'uposlenik'">
-            <UposlenikUl />
-        </div> 
+
+                    <li>
+                        <Logout />
+                    </li>
+                </ul>
+            </div>
+
+            <div v-if="this.$store.state.user.role === 'uposlenik'">
+                <ul>
+                    <li>
+                        <router-link to="/admin">
+                            <font-awesome-icon icon="fa-solid fa-user" />Profil</router-link>
+                    </li>
+                    <li>
+                        <router-link to="/uposlenik/statussoba">
+                            <font-awesome-icon icon="fa-solid fa-calendar" /> Sobe na raspolaganju</router-link>
+                    </li>
+
+                    <li>
+                        <router-link to="/uposlenik/rezervisisobu">
+                            <font-awesome-icon icon="fa-solid fa-calendar" /> Rezervisi Sobu</router-link>
+                    </li>
+                    <li>
+                        <Logout />
+                    </li>
+                </ul>
+            </div>
 
         </div>
-    </div>    
-   
+    </div>
+
 </template>
 
 <script>
-    import AdminUl from './sidenav_liste/AdminUl.vue'
-    import SefUl from './sidenav_liste/SefUl.vue'
-    import UposlenikUl from './sidenav_liste/UposlenikUl.vue'
+    import Logout from '../components/Logout.vue'
     export default {
-        name:'SideNav',
-        components:{ AdminUl,SefUl,UposlenikUl }
+        name: 'SideNav',
+        components: {
+            Logout
+        }
     }
 </script>
 
 <style scoped>
-.side-nav{
-        width:20%;
-        height:100%;
-        /* background-color:rgba(220, 220, 220, 0.907); */
+    .side-nav {
+        width: 18%;
+        height: 90vh;
+        /* background-color:orangered; */
+       
         background: url('../../public/google-pattern-3.jpg') no-repeat center center/cover;
-        display:none;
         
-        transition: .5s;
-        overflow: hidden;
-      
+        
+       
     }
-   
+     
+    ul {
+
+        padding-top: 5%;
+    }
+
+    ul li {
+        margin-bottom: 20px;
+        margin-left: 5%;
+
+
+        cursor: pointer;
+    }
+
+    a {
+        color: rgb(208, 0, 83);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 20px;
+    }
+  
     @media (max-width:567px) {
-        .side-nav{
-            position:fixed;
-            z-index: 0;
-            top:0;
-            width:50%;
+        .side-nav {
+            padding-top:3%;
+            position: fixed;
+            height:100vh;
+            z-index: 20;
+            top: 0;
+            width: 50%;
+        transform: translate(-100%,0%);
+           
         }
     }
 </style>
-

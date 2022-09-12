@@ -1,7 +1,6 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import Admin from '../pages/Admin'
-import Uposlenik from '../pages/Uposlenik'
-import Sef from '../pages/Sef'
+import Profile from '../components/profiles/Profile'
+
 import DodajSektor from '../pages/sef/addsector'
 import SviSektori from '../pages/sef/svisektori'
 import Form from '../components/DashboardForm'
@@ -19,12 +18,12 @@ const routes = [
     {
         path: '/admin',
         name : 'Admin',
-        component : Admin
+        component : Profile
     },
     {
         path: '/uposlenik',
         name : 'Uposlenik',
-        component : Uposlenik
+        component :Profile
     },
     {
         path: '/uposlenik/rezervisisobu',
@@ -39,7 +38,7 @@ const routes = [
     {
         path: '/sef',
         name : 'Sef',
-        component : Sef
+        component : Profile
     },
     {
         path: '/sef/dodajsektor',

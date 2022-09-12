@@ -1,9 +1,9 @@
 <template>
-<div>
+
    
-    <div  class="allusers-container">
+    
         
-        <SideNav/>
+        
 
         
         <div class="allusers">
@@ -14,6 +14,7 @@
                 <div><h3>Email</h3></div>
                 <div><h3>Adresa</h3></div>
                 <div><h3>Uloga</h3></div>
+                <div><h3>Status</h3></div>
                 <div><h3>Opcije</h3></div>
 
             </div>
@@ -29,21 +30,20 @@
             <OverlayEdit :korisnik="this.korisnik" />
         </div>
  
-    </div>
-</div>
+
 </template>
 
 <script>
 import axios from 'axios'
-// import Header from '../../static_components/Header.vue'
-import SideNav from '../../components/SideNav'
+
+
 import UserCard from '../../components/adminusers/UserCard'
 import OverlayDeaktivacija
  from '../../components/overlays/OverlayDeaktivacija'
 import OverlayEdit from '../../components/overlays/OverlayEdit'
     export default {
         name:'Allusers',
-        components: {SideNav,UserCard,OverlayDeaktivacija,OverlayEdit,},
+        components: {UserCard,OverlayDeaktivacija,OverlayEdit,},
        
         data(){
             return{
@@ -82,51 +82,59 @@ import OverlayEdit from '../../components/overlays/OverlayEdit'
                 this.$router.push(`/${this.$store.state.user.role}`)
                 
             }
-            this.$store.state.sidenav = true;
+         
+            this.$store.state.sidenav = false;
+      
+
 
         }
     }
 </script>
 
 <style scoped>
-    .allusers-container{
-        
-      display: flex;
-      width:100%;
-      height:90vh;
-    }
+    
 
     h1{
         text-align: center;
         margin-bottom:4%;
+        color:gray;
+        padding:10px;
+       
     }
     .allusers{
-        width:80%;
-        
+        width:70%;
         margin:auto;
+        margin-left:2%;
         margin-top:5%;
         
-       
         padding:15px;
+        background-color:gainsboro;
+        /* background: url('../../../public/google-pattern-4.jpg') no-repeat center center/cover; */
 
+         border-top-right-radius:5px;
+        border-top-left-radius:5px;
+        /* transform:translate(-5%,0%); */
+       
     }
     .head{
         display: flex;
         justify-content: space-between;
         align-items: center;
-     
-        margin-bottom:5%;
+        color:gray;
+        margin-bottom:2%;
         gap:15px;
+        padding:10px 40px 10px 20px;
     }
     .head > div{
         width:200px;
-
+        
     }
     .body{
         width:100%;
         overflow-y: scroll ;
          max-height: 45vh;
-         padding:10px;
+         padding: 10px 20px;
+         
          background: gainsboro;
     }
     
@@ -147,7 +155,9 @@ import OverlayEdit from '../../components/overlays/OverlayEdit'
     @media (max-width:567px) {
         .allusers{
             width:100%;
-           
+        z-index: 0;
+        margin-left:0%;
+        
         }
         .head{
             display: none;

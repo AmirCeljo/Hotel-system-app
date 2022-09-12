@@ -40,7 +40,7 @@ import axios from 'axios'
                     id:this.$store.state.user._id,
                     password: this.password
                 }
-                const result = await axios.put('https://hotel-menagment-app-vue-app.herokuapp.com/updatepassword', korisnik)
+                const result = await axios.put('http://localhost:5000/updatepassword', korisnik)
                 console.log(result)
             }
 

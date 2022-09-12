@@ -1,10 +1,6 @@
 <template>
     <div class="dashboard-form">
-        <div class="dashboard-flex-item-1">
-            <div>
-
-            </div>
-        </div>
+        <div class="dashboard-flex-item-1"></div>
     
         <div class="dashboard-flex-item-2">
             <form @submit="onSubmit">
@@ -56,6 +52,10 @@
                 const korisnik = {
                     username: this.username,
                     password: this.password
+                }
+
+                if(!this.username || !this.password){
+                    alert('Molimo popunite formu')
                 }
 
                 const result = await axios.post('https://hotel-menagment-app-vue-app.herokuapp.com/login',korisnik)

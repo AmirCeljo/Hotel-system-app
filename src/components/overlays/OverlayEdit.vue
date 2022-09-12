@@ -5,15 +5,16 @@
                 <div class="form" v-for="k in korisnik" v-bind:key="k">
                     <h1>Update korisnika</h1>
                     <small>Izaberite sta zelite da promijenite kod korisnika</small>
+                     
                      <div class="info" v-if="k.gender == 'female' " >
                     
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp"
+                            <img src="../../zenskiavatar.jpg"
                                 alt="">
 
                                 <h3>{{k.firstname}} {{k.lastname}}</h3>
                         </div>
                         <div v-if="k.gender == 'male' " class="info-red">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                            <img src="../../muskiavatar.jpg"
                                 alt="">
 
                                 <h3>{{k.firstname}} {{k.lastname}}</h3>
@@ -120,7 +121,7 @@ import UpdateRole from '../updateforms/updateRole.vue'
         display: none;
         justify-content: center;
         align-items: center;
-        
+        flex-direction:column;
         width:100%;
         height: 100vh;
         position: fixed;
@@ -130,9 +131,9 @@ import UpdateRole from '../updateforms/updateRole.vue'
         line-height: 2rem;
     }
     .times{
-        position: absolute;
-        top:2%;
-        right: 2%;
+        width:30%;
+        text-align: right;
+        margin: 0% auto;
         font-size:30px;
         font-weight:500;
         color:white;

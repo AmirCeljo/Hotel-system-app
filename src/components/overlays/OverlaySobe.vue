@@ -8,8 +8,9 @@
                 
                 <form action="" @submit="(e) => {
                     e.preventDefault() 
-                    onSubmit(this.trenutnisektor,this.trenutniId)
+                    onSubmit(this.trenutnisektor,this.trenutniId,this.duzina)
                     }">
+                    
                     <div class="form-group">
                         <input type="number" class="number-input" 
                         v-model='soba' placeholder="npr Dvokrevetna soba , unesite (2)">
@@ -34,9 +35,10 @@ import axios from 'axios'
    
     name:'OverlaySobe',
     components:{},
-    props: ['uposlenici','trenutnisektor','trenutniId'],
+    props: ['uposlenici','trenutnisektor','trenutniId','duzina'],
     data(){
       return{
+    
         soba:'',
         desc:''
       }      
@@ -46,15 +48,16 @@ import axios from 'axios'
       closeWindow(){
         document.querySelector('.overlay-sobe').style.display = 'none'
       },
-      async onSubmit(sektor,sektorId){
+      async onSubmit(sektor,sektorId,duzina){
         
         const obj = {
             soba: this.soba,
             opis:this.desc,
+            rednibroj:duzina,
             sektor:sektor,
             sektorId:sektorId
         }
-        const result = await axios.post('https://hotel-menagment-app-vue-app.herokuapp.com/dodajsobunasektor',obj)
+        const result = await axios.post('http://localhost:5000/dodajsobunasektor',obj)
         console.log(result.data)
 
         this.soba = ''
@@ -72,7 +75,7 @@ import axios from 'axios'
         display: none;
         justify-content: center;
         align-items: center;
-        
+        flex-direction: column;
         width:100%;
         height: 100vh;
         position: fixed;
@@ -83,9 +86,9 @@ import axios from 'axios'
     }
   
     .times{
-        position: absolute;
-        top:2%;
-        right: 2%;
+       width:20%;
+        text-align: right;
+        margin: 0% auto;
         font-size:30px;
         font-weight:500;
         color:white;

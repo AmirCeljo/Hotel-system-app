@@ -15,6 +15,10 @@
         <div class="capitalize">
             <p>{{user.role}}</p>
         </div>
+        <div class="capitalize">
+            <p v-if="user.status == 'active'" class="blue">{{user.status}}</p>
+            <p v-if="user.status == 'deactivated'" class="orange">{{user.status}}</p>
+        </div>
         <div>
             <ul>
                 <li><button type="button" class="btn-primary" v-on:click="() => {
@@ -68,12 +72,14 @@
         justify-content: space-between;
         align-items: center;
         gap: 15px;
-        padding: 10px;
+        padding: 10px 0px;
 
     }
 
     .card>div {
         width: 200px;
+        
+
     }
     
     p {
@@ -86,7 +92,7 @@
         display: flex;
         justify-content: left;
         align-items: center;
-        gap: 10px;
+        gap: 20px;
     }
 
     .btn-primary,
@@ -95,7 +101,7 @@
         color: white;
         font-weight: 500;
         border: none;
-        padding: 10px;
+        /* padding: 10px; */
         font-size: 17px;
         cursor: pointer;
         background: transparent;
@@ -117,7 +123,12 @@
     .capitalize {
         text-transform: capitalize;
     }
-
+    .blue{
+        color: cornflowerblue;
+    }
+    .orange{
+        color:orangered;
+    }
     @media (max-width:567px) {
         .card{
             flex-direction: column;
@@ -126,6 +137,7 @@
             margin-bottom:5%;
             background-color:white;
             border-radius:5px;
+            
         }
         .card > div{
             width:100%;

@@ -1,6 +1,6 @@
 <template>
     <div class="sektori">
-        <SideNav />
+        
         
         <div class="svi-sektori" v-for="sektori in svisektori" v-bind:key="sektori" >
             <div v-for="sektor in sektori" v-bind:key="sektor">
@@ -28,7 +28,7 @@
         </div>
         <OverlayKorisnici :uposlenici="this.uposlenici" :trenutnisektor='this.trenutniSektor'
         :trenutniId="this.sektorId" :trenutniSef="this.trenutniSef"/>
-        <OverlaySobe :trenutnisektor='this.trenutniSektor' :trenutniId="this.sektorId"/>
+        <OverlaySobe :trenutnisektor='this.trenutniSektor' :trenutniId="this.sektorId" :duzina="duzinaSoba"/>
         </div>
     </div>
 </template>
@@ -51,7 +51,7 @@ import {useRoute} from 'vue-router'
                 trenutniSektor: '',
                 sektorId: '',
                 trenutniSef: '',
-                
+                duzinaSoba: 0,
 
             }
         },
@@ -66,6 +66,18 @@ import {useRoute} from 'vue-router'
                 document.querySelector('.overlay-sobe').style.display = 'flex'
                 this.trenutniSektor = trenutni
                 this.sektorId = idSektora
+
+                axios.get(`https://hotel-menagment-app-vue-app.herokuapp.com/sektor/${idSektora}`)
+                .then(result => {
+                    // this.duzinaSoba.push(result.data[1])
+                    // this.duzinaSoba.push(result.data[1])
+                    this.duzinaSoba = result.data[1].length + 1
+                    console.log(this.duzinaSoba)
+
+                })
+                .catch(err => console.log(err))
+
+                
             }
             ,
             async setParamsId(id){
@@ -98,7 +110,10 @@ import {useRoute} from 'vue-router'
                 
             }
    
-            this.$store.state.sidenav = true;
+     
+            this.$store.state.sidenav = false;
+     
+
     
    }
 
@@ -107,17 +122,17 @@ import {useRoute} from 'vue-router'
 </script>
 
 <style scoped>
-.sektori{
-
-    display: flex;
-    width:100%;
-    height:90vh;
-}
-    .svi-sektori{
-        width: 70%;
+    .sektori{
+        width:70%;
         margin:auto;
         margin-top:5%;
-    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+         box-sizing: border-box;
+        /* transform: translate(-8%,0%); */
+    }
+    .svi-sektori{
         padding:15px;
         background-color:cornflowerblue;
         border-radius:5px;

@@ -2,12 +2,13 @@
     <div class="korisnik-card">
        
         <div v-if="up.gender == 'female' " class='image'>
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp" alt="">
+            <img src="../../zenskiavatar.jpg" alt="">
         </div>
         <div v-if="up.gender == 'male' " class="image">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="">
+            <img src="../../muskiavatar.jpg" alt="">
         </div>
 
+      
         <h3>{{up.firstname}} {{up.lastname}}</h3>
         <small v-if="up.availability == 'busy' " class='red'>Busy</small>
         <small v-if="up.availability == 'available' " class='green'>Available</small>
@@ -43,7 +44,7 @@ import axios from 'axios'
                     sefId:sefId,
                     
                 }
-                const result = await axios.post('https://hotel-menagment-app-vue-app.herokuapp.com/dodajuposlenikanasektor', korisnik)
+                const result = await axios.post('http://localhost:5000/dodajuposlenikanasektor', korisnik)
                 console.log(result)
                 this.$router.go()
             }

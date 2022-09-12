@@ -37,7 +37,7 @@
         display: none;
         justify-content: center;
         align-items: center;
-        
+        flex-direction: column;
         width:100%;
         height: 100vh;
         position: fixed;
@@ -58,9 +58,9 @@
       gap:15px;
     }
     .times{
-        position: absolute;
-        top:2%;
-        right: 2%;
+        width:60%;
+        text-align: right;
+        margin: 0% auto;
         font-size:30px;
         font-weight:500;
         color:white;

@@ -26,12 +26,28 @@
         methods:{
             prikaziSideNav(){
                 if(this.$store.state.sidenav){
-                    document.querySelector('.side-nav').style.display = 'block';
-                    this.$store.state.sidenav = false
+                    if(window.innerWidth > 570){
+                        document.querySelector('.side-nav').style = 'animation: slideIn .2s ease-in forwards';
+                        this.$store.state.sidenav = false
+                    }
+                    else if(window.innerWidth < 570){
+                        document.querySelector('.side-nav').style = 'animation: slideOutMobile .2s ease-in forwards';
+                        this.$store.state.sidenav = false
+                    }
+                    
                 }
                 else if(!this.$store.state.sidenav){
-                    document.querySelector('.side-nav').style.display = 'none';
+                    if(window.innerWidth > 570){
+                          document.querySelector('.side-nav').style = 'animation:slideOut .2s ease-in forwards';
                     this.$store.state.sidenav = true;
+
+
+                    }
+                    else if(window.innerWidth < 570){
+                        document.querySelector('.side-nav').style = 'animation: slideInMobile .2s ease-in forwards';
+                    this.$store.state.sidenav = true;
+
+                    }
 
                 }
                 
@@ -79,6 +95,7 @@
         justify-content: space-between;
         gap:20px;
         align-items: center;
+        
         background-color: cornflowerblue;
         border-bottom:1px solid gainsboro;
         color: white;
@@ -92,6 +109,7 @@
         align-items: center;
         gap:15px;
     }
+   
     @media (max-width:567px) {
         .header{
             font-size:13px;

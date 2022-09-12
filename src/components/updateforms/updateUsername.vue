@@ -44,7 +44,7 @@ import axios from 'axios'
                     username: this.username
                 }
 
-                const result = await axios.post('https://hotel-menagment-app-vue-app.herokuapp.com/updateusername',korisnik)
+                const result = await axios.post('http://localhost:5000/updateusername',korisnik)
                 console.log(result)
             }
         }

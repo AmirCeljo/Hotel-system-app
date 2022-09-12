@@ -1,21 +1,21 @@
 <template>
-    <div class="add-sector-container">
-        <SideNav />
+    
+        
         <form @submit="onSubmit">
             <div class="form-group">
             <h1>Dodaj novi sektor</h1>
             
         </div>
         <div class="form-group">
-            <!-- <label for="username">Username</label> -->
-            <input type="text" class="form-control" v-model='sector' placeholder="Unesite naziv sektora"/>
+           
+           <h2> {{nextSector}} </h2>
         </div>
         
         <div class="form-group">
             <input type="submit" class="form-submit">
         </div>
         </form>
-    </div>
+    
 </template>
 
 
@@ -27,14 +27,15 @@ import SideNav from '../../components/SideNav'
         components: {SideNav},
         data(){
             return{
-                sector:''
+                sector:'',
+                nextSector: ''
             }
         },
         methods:{
             async onSubmit(e){
                 e.preventDefault()
                 const sektor = {
-                    sectorname:this.sector,
+                    sectorname:this.nextSector,
                     id:this.$store.state.user._id,
                     username:this.$store.state.user.username,
                     firstname: this.$store.state.user.firstname,
@@ -50,7 +51,16 @@ import SideNav from '../../components/SideNav'
                 this.$router.push(`/${this.$store.state.user.role}`)
             }
 
-            this.$store.state.sidenav = true;
+            axios.get('https://hotel-menagment-app-vue-app.herokuapp.com/svisektori')
+            .then(result => {
+                let num = result.data.length + 1
+                this.nextSector = 'Sektor ' + num
+            })
+            .catch(err => console.log(err))
+ 
+            this.$store.state.sidenav = false;
+    
+
 
         }
     }
@@ -58,12 +68,7 @@ import SideNav from '../../components/SideNav'
 
 
 <style scoped>
-    .add-sector-container{
-        width: 100%;
-        height:90vh;
-        display: flex;
-       
-    }
+  
      form{
         margin: auto;
         margin-top:10%;
@@ -73,11 +78,17 @@ import SideNav from '../../components/SideNav'
         border-radius:5px ;
         box-shadow:2px 7px 7px 3px rgb(228, 228, 228);
         line-height: 3rem;
+        /* transform: translate(-25%,0%) */
     }
     h1{
         text-align: center;
         margin-bottom:20px;
         color:cornflowerblue;
+    }
+    h2{
+        text-align: center;
+        margin-bottom:20px;
+        color: orangered;
     }
     .form-group{
         width:100%;
@@ -101,10 +112,11 @@ import SideNav from '../../components/SideNav'
     }
     .form-submit{
         width:100%;
-        border:2px solid cornflowerblue;
-        background-color:transparent;
+        /* border:2px solid cornflowerblue; */
+        border:none;
+        background-color:cornflowerblue;
         padding:10px 15px;
-        color:cornflowerblue;
+        color:white;
         cursor:pointer;
         margin-top:30px;
         border-radius:50px;
@@ -113,6 +125,8 @@ import SideNav from '../../components/SideNav'
         form{
             width:80%;
             margin-top:22% ;
+        transform: translate(-0%,0%)
+
         }
     }
     

@@ -40,7 +40,7 @@ import axios from 'axios'
                     id:this.$store.state.user._id,
                     address: this.address
                 }
-                const result = await axios.post('https://hotel-menagment-app-vue-app.herokuapp.com/updateaddress', korisnik)
+                const result = await axios.post('http://localhost:5000/updateaddress', korisnik)
                 console.log(result)
             }
 

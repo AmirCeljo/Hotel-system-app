@@ -1,6 +1,6 @@
 <template>
-    <div class="adduser-container">
-        <SideNav />
+   
+        
         <div class="form">
         <h1>Dodaj korisnika</h1>
 
@@ -45,7 +45,7 @@
         </div>
     </form>
     </div>
-    </div>
+   
 </template>
 
 <script>
@@ -107,45 +107,45 @@
                 this.$router.push(`/${this.$store.state.user.role}`)
             }
 
-            this.$store.state.sidenav = true;
+         
+            this.$store.state.sidenav = false;
+           
+
 
         }
     }
 </script>
 
 <style scoped>
-   .adduser-container{
-   
-    width:100%;
-    height:90vh;
-    display: flex;
-
-
-   }
+  
     .form{
         width:50%;
         margin:5% auto;
-        padding:15px;
+        padding:30px 15px;
+        background-color:rgb(238, 238, 238);
+        /* background: url('../../../public/google-pattern-4.jpg') no-repeat center center/cover; */
+box-shadow:2px 7px 7px 3px rgb(228, 228, 228);
+        /* transform:translate(-10%,0%); */
+        border-radius:5px;
     }
-   h1{
-    text-align: center;
-   }
+   
    form{
         margin:0;
         padding:20px 20px 40px 20px;
        
       
         border-radius:5px ;
-        box-shadow:2px 7px 7px 3px rgb(228, 228, 228);
+        /* box-shadow:2px 7px 7px 3px rgb(228, 228, 228); */
         line-height: 3rem;
     }
     h1{
         text-align: center;
         margin-bottom:20px;
-        color:black;
+        color:gray;
     }
     .form-group{
-        width:100%;
+        width:70%;
+        margin:auto;
     }
     .register-group{
         display: flex;
@@ -156,27 +156,32 @@
     
     select{
         cursor: pointer;
+        
     }
     .form-control{
         width:100%;
         padding:10px;
         margin-bottom:10px;
+        background:transparent;
         border:none;
-        border-bottom:2px solid black;
-        
+        border-bottom:2px solid cornflowerblue;
         
         
     }
     .form-control:focus{
         outline:none;
-        border-bottom:2px solid cornflowerblue;
+        border-bottom:2px solid white;
+    }w
+    .form-control::placeholder{
+        color: cornflowerblue;
+        font-style: italic;
     }
     .form-submit{
         width:100%;
-        border:2px solid black;
-        background-color:transparent;
+        border:none;
+        background-color:cornflowerblue;
         padding:10px 15px;
-        color:black;
+        color:white;
         cursor:pointer;
         margin-top:30px;
         border-radius:50px;
