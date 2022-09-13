@@ -55,19 +55,19 @@
             ,
            showAlert(){
                 alert(`
-                Log in as an Admin : 
+                Log in as an admin : 
                 Admin can add new user , delete , update or deactivate existing user
                 username - admin
                 password - 123456
 
-                Log in as an Sef(boss):
-                Boss can add new sector(floor) in hotel , add workers and rooms to sector and see what employers do on their panel
-                username - sef
+                Log in as an manager :
+                Manager can add new sector(floor) in hotel , add workers and rooms to sector and see what employers do on their panel
+                username - emadoe
                 password - 123456
 
-                Log in as an Uposlenik (employer):
-                Employer can get information from the guest , and reserve free room as well as see reserved rooms and all rooms that boss have added.
-                username - uposlenik
+                Log in as an employee :
+                Employee can get information from the guest , and reserve free room as well as see reserved rooms and all rooms that boss have added.
+                username - johndoe
                 password - 123456
                 `)
                 }
